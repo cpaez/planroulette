@@ -7,7 +7,10 @@ exports.findAll = function (req, res) {
 		if(err) {
 			console.log(err);
 		}else{
-			res.send(plans);
+			res.header('Content-type','application/json');
+			res.header('Charset','utf8');
+			res.send(req.query.callback + '(' + JSON.stringify(plans) + ');');
+			
 			console.log(plans);
 		}
 	});
@@ -20,7 +23,10 @@ exports.findById = function(req, res) {
 		if(err) {
 			console.log(err);
 		}else{
-			res.send(plans);
+			res.header('Content-type','application/json');
+			res.header('Charset','utf8');
+			res.send(req.query.callback + '(' + JSON.stringify(plans) + ');');
+
 			console.log(plans);
 		}
 	});

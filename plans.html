@@ -6,13 +6,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Plan Roulette</title>
+    <title>Plan Roulette - Plans</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
   </head>
 
   <body>
@@ -53,12 +50,39 @@
       </div>
     </div>
 
+      <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+      <script type="text/javascript" src="js/knockout-2.3.0.js"></script>
+      <script type="text/javascript" src="js/jquery.blockUI.js"></script>
+      <script type="text/javascript" src="model/plan.js"></script>
+
+      <script type="text/javascript">
+        $(document).ready(function () {
+          var plans = new PlanViewModel();
+          ko.applyBindings(plans);
+        });
+      </script>
+
     <div class="container">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Enjoy BA!</h1>
-        <p>We help you make plans in BA. Please sign up in our site, fill your profile and enjoy an awesome day in Buenos Aires. We have the best catalog of bars, night clubs, restaurants, venues, shows and theaters in the city. You will not believe the kind of things "the queen of del plata" got for you!</p>
+        <h1>Plan List</h1>
+        
+        <h2>Your plans for the weekend (<span data-bind="text: plans().length"></span>)</h2>
+
+        <table>
+            <thead>
+              <tr>
+                <th>Plan name</th><th></th>
+              </tr>
+            </thead>
+            <!-- Todo: Generate table body -->
+            <tbody data-bind="foreach: plans">
+                <td data-bind="text: name"></td>
+                <td data-bind="text: description"></td>
+                <td><a href="#" data-bind="click: $root.removePlan">Remove</a></td>
+            </tbody>
+        </table>
         <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
       </div>
 
@@ -69,7 +93,7 @@
           <div class="col-lg-4">
             <h2>Suggestion Engine</h2>
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="plans.html">View details &raquo;</a></p>
+            <p><a class="btn btn-default" href="plans.htm">View details &raquo;</a></p>
           </div>
           <div class="col-lg-4">
             <h2>Latest News</h2>

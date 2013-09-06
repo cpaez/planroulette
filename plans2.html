@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+    <div class="container">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Plan List</h1>
+        
+        <h2>Your plans for the weekend (<span data-bind="text: plans().length"></span>)</h2>
+
+        <table>
+            <thead>
+              <tr>
+                <th>Plan name</th><th></th>
+              </tr>
+            </thead>
+            <!-- Todo: Generate table body -->
+            <tbody data-bind="foreach: plans">
+                <td><label data-bind="value: name"></td>
+                <td data-bind="text: description"></td>
+                <td><a href="#" data-bind="click: $root.removePlan">Remove</a></td>
+            </tbody>
+        </table>
+        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+      </div>
+
+        <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+        <script type="text/javascript" src="js/knockout-2.3.0.js"></script>
+        <script type="text/javascript" src="js/jquery.blockUI.js"></script>
+        <script type="text/javascript" src="model/plan.js"></script>
+        <script type="text/javascript">
+            var plans = new PlanViewModel();
+
+            ko.applyBindings(plans);
+        </script>
+</body>
+</html>
