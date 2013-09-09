@@ -13,6 +13,10 @@
 
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="js/knockout-2.3.0.js"></script>
+    <script type="text/javascript" src="js/jquery.blockUI.js"></script>
   </head>
 
   <body>
@@ -21,8 +25,8 @@
       window.fbAsyncInit = function() {
         // init the FB JS SDK
         FB.init({
-          appId      : 'YOUR_APP_ID',                        // App ID from the app dashboard
-          channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
+          appId      : '368679433263598',                        // App ID from the app dashboard
+          channelUrl : '//www.carlosapaez.com.ar/planroulette/channel.html', // Channel file for x-domain comms
           status     : true,                                 // Check Facebook Login status
           xfbml      : true                                  // Look for social plugins on the page
         });
@@ -38,6 +42,20 @@
          js.src = "//connect.facebook.net/en_US/all.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
+
+
+      $("#login").bind("click", function() {
+        FB.login(function(response) {
+         if (response.authResponse) {
+           console.log('Welcome!  Fetching your information.... ');
+           FB.api('/me', function(response) {
+             console.log('Good to see you, ' + response.name + '.');
+           });
+         } else {
+           console.log('User cancelled login or did not fully authorize.');
+         }
+       });
+      });
     </script>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -52,7 +70,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.html">Home</a></li>
             <li><a href="#about">About</a></li>
-			<li><a href="#agenda">Agenda</a></li>
+			      <li><a href="#agenda">Agenda</a></li>
             <li><a href="#contact">Contact</a></li>
             <!--<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -67,9 +85,7 @@
               </ul>
             </li>
           </ul>
-          <form class="navbar-form form-inline pull-right">
-            <a href="http://localhost:3000/auth/facebook"><img src="img/fb.login.png" /></a>
-          </form>
+          <div id="login" class="fb-login-button pull-right" data-width="200"></div>
         </div><!--/.nav-collapse -->
       </div>
     </div>
