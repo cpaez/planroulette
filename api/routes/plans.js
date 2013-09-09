@@ -31,14 +31,3 @@ exports.findById = function(req, res) {
 		}
 	});
 };
-
-
-
-// deprecated
-// exports.findAll = function(req, res) {
-// 	res.send([{name: 'Pepsi Music'}, {name: 'Kusama en el MALBA'}]);
-// };
-
-// exports.findById = function(req, res) {
-// 	res.send({id:req.params.id, name: 'Pepsi Music', description: 'The best concert in BA'});
-// };
