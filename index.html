@@ -13,10 +13,6 @@
 
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
-
-    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="js/knockout-2.3.0.js"></script>
-    <script type="text/javascript" src="js/jquery.blockUI.js"></script>
   </head>
 
   <body>
@@ -39,23 +35,9 @@
          var js, fjs = d.getElementsByTagName(s)[0];
          if (d.getElementById(id)) {return;}
          js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/all.js";
+         js.src = "https://connect.facebook.net/en_US/all.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
-
-
-      $("#login").bind("click", function() {
-        FB.login(function(response) {
-         if (response.authResponse) {
-           console.log('Welcome!  Fetching your information.... ');
-           FB.api('/me', function(response) {
-             console.log('Good to see you, ' + response.name + '.');
-           });
-         } else {
-           console.log('User cancelled login or did not fully authorize.');
-         }
-       });
-      });
     </script>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -72,20 +54,9 @@
             <li><a href="#about">About</a></li>
 			      <li><a href="#agenda">Agenda</a></li>
             <li><a href="#contact">Contact</a></li>
-            <!--<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="nav-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>-->
-              </ul>
-            </li>
           </ul>
-          <div id="login" class="fb-login-button pull-right" data-width="200"></div>
+          <!--<div id="login" class="fb-login-button pull-right" data-width="200"></div>-->
+          <a id='login' href='#'><img alt='Login with Facebook' src='img/fb.login.png' /></a>
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -128,6 +99,28 @@
       </div>
 
     </div> <!-- /container -->
+
+    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="js/knockout-2.3.0.js"></script>
+    <script type="text/javascript" src="js/jquery.blockUI.js"></script>
+
+    <script type="text/javascript">
+
+      $("#login").bind("click", function() {
+        FB.login(function(response) {
+            if (response.authResponse) {
+                alert('Success!');
+
+                FB.api('/me', function(response) {
+                 console.log('Good to see you, ' + response.name + '.');
+               });
+            }else{
+                alert('Login Failed!');
+            }
+        }, {scope: 'email,read_stream,publish_stream'});
+      });
+
+    </script>
 
   </body>
 </html>
